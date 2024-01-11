@@ -1,6 +1,6 @@
-# portfolio-SeHyoun-Algoritms
-This part has algorithm problems that I solve.
-I usually practice algorithmic problems on two sites.
+# code-crafter-algoritms-problem
+This includes algorithm problems that I have solved.
+I usually practice algorithmic problem.
 # 1. https://www.acmicpc.net/
 # 2. https://codeup.kr/
 # 3. https://leetcode.com/
