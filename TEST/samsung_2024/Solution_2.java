@@ -1,3 +1,4 @@
+package samsung_2024;
 import java.io.*;
 import java.util.Arrays;
 
@@ -7,7 +8,7 @@ public class Solution_2 {
         File file = new File("input_2.txt");
         BufferedReader br = new BufferedReader(new FileReader(file));
         int T = Integer.parseInt(br.readLine()); // 테스트 케이스 수
-        int result;
+
         for (int i = 0; i < T; i++) {
             int N = Integer.parseInt(br.readLine());
 
@@ -55,6 +56,7 @@ public class Solution_2 {
 
             }
         }
+        br.close();
     }
 
 }
