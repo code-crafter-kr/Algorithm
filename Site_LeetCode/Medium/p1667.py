@@ -10,6 +10,10 @@ def closeStrings( word1, word2):
             lst_word1[ord(word1[i]) - ord('a')] += 1
             lst_word2[ord(word2[i]) - ord('a')] += 1
 
+    for i in range (len(lst_word1)):
+        if bool(lst_word1[i]) != bool(lst_word2[i]):
+            return False
+
     lst_word1.sort()
     lst_word2.sort()
     return lst_word1 == lst_word2
