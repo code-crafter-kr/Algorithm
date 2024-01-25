@@ -1,4 +1,3 @@
-package samsung_2024;
 import java.io.*;
 import java.util.Arrays;
 
@@ -28,30 +27,36 @@ public class Solution_2 {
                 }
                 dp[0][0] = 0; // 초기 상태: 아무 능력치도 선택되지 않음
                 // 요원 별 능력치 정리 (해당능력치를 선택했을때 소멸되는값으로 바로 정리)
-                for (int j = 1; j < N+1; j++) {
+                for (int j = 1; j < N + 1; j++) {
                     String[] input = br.readLine().split(" ");
 
                     for (int state = 0; state < 8; state++) { // 상태는 000부터 111까지
                         if (dp[j - 1][state] != Integer.MAX_VALUE) {
                             // 현재 요원이 힘을 공유하는 경우 (비트 0)
-                            dp[j][state | 1] = Math.min(dp[j][state | 1], dp[j - 1][state] + Integer.parseInt(input[1]) + Integer.parseInt(input[2]));
+                            dp[j][state | 1] = Math.min(dp[j][state | 1],
+                                    dp[j - 1][state] + Integer.parseInt(input[1]) + Integer.parseInt(input[2]));
                             // 현재 요원이 지능을 공유하는 경우 (비트 1)
-                            dp[j][state | 2] = Math.min(dp[j][state | 2], dp[j - 1][state] + Integer.parseInt(input[0]) + Integer.parseInt(input[2]));
+                            dp[j][state | 2] = Math.min(dp[j][state | 2],
+                                    dp[j - 1][state] + Integer.parseInt(input[0]) + Integer.parseInt(input[2]));
                             // 현재 요원이 민첩을 공유하는 경우 (비트 2)
-                            dp[j][state | 4] = Math.min(dp[j][state | 4], dp[j - 1][state] + Integer.parseInt(input[0]) + Integer.parseInt(input[1]));
+                            dp[j][state | 4] = Math.min(dp[j][state | 4],
+                                    dp[j - 1][state] + Integer.parseInt(input[0]) + Integer.parseInt(input[1]));
                         }
                     }
 
-                    if (dp[j][7] == Arrays.stream(dp[j]).min().orElse(Integer.MAX_VALUE) && dp[j][7] != Integer.MAX_VALUE){
-                        for (int k = j + 1; k < N+1; k++) { //이어받기
+                    if (dp[j][7] == Arrays.stream(dp[j]).min().orElse(Integer.MAX_VALUE)
+                            && dp[j][7] != Integer.MAX_VALUE) {
+                        for (int k = j + 1; k < N + 1; k++) { // 이어받기
                             String[] input_2 = br.readLine().split(" ");
-                            dp[j][7] = dp[j-1][7] + Math.min(Math.min(Integer.parseInt(input_2[1]) + Integer.parseInt(input_2[2]), Integer.parseInt(input[0]) + Integer.parseInt(input[2])), Integer.parseInt(input[0]) + Integer.parseInt(input[1]));
+                            dp[j][7] = dp[j - 1][7] + Math.min(
+                                    Math.min(Integer.parseInt(input_2[1]) + Integer.parseInt(input_2[2]),
+                                            Integer.parseInt(input[0]) + Integer.parseInt(input[2])),
+                                    Integer.parseInt(input[0]) + Integer.parseInt(input[1]));
                         }
                         break;
                     }
                 }
 
-                
                 System.out.println("#" + (i + 1) + " " + dp[N][7]);
 
             }
